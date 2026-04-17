@@ -1,4 +1,5 @@
-# brainhack_fnirs
+# Brainhack Warsaw project #1
+### Cognitive load classification
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />

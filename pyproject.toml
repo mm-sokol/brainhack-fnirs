@@ -17,9 +17,15 @@ classifiers = [
 ]
 requires-python = "~=3.10.0"
 dependencies = [
+    "benchnirs>=1.2.5",
+    "dotenv>=0.9.9",
+    "h5py>=3.16.0",
+    "jsonparse>=0.15.1",
+    "logging>=0.4.9.6",
     "mne>=1.12.0",
     "numpy>=2.2.6",
     "pandas>=2.3.3",
+    "pytest>=9.0.3",
     "scikit-learn>=1.7.2",
     "seaborn>=0.13.2",
 ]
@@ -36,4 +42,10 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["fnirs_cognitive_load"]
 force-sort-within-sections = true
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
 

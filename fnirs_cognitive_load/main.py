@@ -6,6 +6,9 @@ from fnirs_cognitive_load.preprocessing.snirf_database_helper import SnirfDataba
 
 
 def main():
+    
+    plt.use('TkAgg')
+    
     snirf_db = SnirfDatabaseHelper(DATA_RAW / "Walking")
     
     snirf_file = snirf_db.get_snirf_files()[0]
@@ -17,4 +20,5 @@ def main():
     ax1 = fig.add_subplot(211)
     raw_intensity.plot(scalings='auto', show=False, axes=ax1)
     ax1.set_title('Raw Intensity')
+    
     fig.show()

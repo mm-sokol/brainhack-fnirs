@@ -13,7 +13,7 @@ def main():
     snirf_data = SnirfDatabaseHelper(DATA_RAW / "Walking")
     plt.switch_backend('QtAgg') 
 
-    for snirf_file in snirf_data.get_snirf_files()[10:]:
+    for snirf_file in snirf_data.get_snirf_files()[13:]:
         subject_name = snirf_data.get_sub_name_from_path(snirf_file)
         
         raw_intensity = snirf_data.read_snirf_file(snirf_file)
@@ -53,9 +53,14 @@ def main():
         fig.savefig(FIG / f"event_timeline_{subject_name}.png")
 
 
-        reject_criteria = dict(hbo=20e-6, hbr=20e-6)
+        reject_criteria = dict(hbo=80e-6, hbr=80e-6)
         tmin, tmax = -10, 16
 
+        df = snirf_data.get_event_map(subject_name)
+        trial_start = df.at[3, 'trial.started']
+        # trial_end = df.at[21, 'trial.stopped']
+
+        raw_hemoglobin.crop(tmin=trial_start, tmax=None)
         epochs = mne.Epochs(
             raw_hemoglobin,
             events,
@@ -79,7 +84,7 @@ def main():
             combine="mean",
             vmin=-1,
             vmax=1,
-            ts_args=dict(ylim=dict(hbo=[-0.2, 0.2], hbr=[-0.2, 0.2])),
+            ts_args=dict(ylim=dict(hbo=[-1, 1], hbr=[-1, 1])),
         )
         
         

@@ -46,3 +46,4 @@ class SnirfDatabaseHelper():
     def read_snirf_file(self, snirf_path):
         raw_intensity = mne.io.read_raw_snirf(snirf_path, preload=True, verbose=False)
         return raw_intensity
+    
